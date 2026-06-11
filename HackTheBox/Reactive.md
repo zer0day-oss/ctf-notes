@@ -1,0 +1,1 @@
+	Found ports 22 and 3000. SSH is running version 9.6p1. Port 3000 is running ppp?, which, after further research, indicates that it may be running a Next.js development server. The site version shows v. 3.2.1 for a program named REACTORWATCH. Interface resembles the look for displaying information for a reactor. 
