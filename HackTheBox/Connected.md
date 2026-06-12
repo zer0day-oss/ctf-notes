@@ -7,4 +7,4 @@
 	+ entering the connected.htb provides me with what looks like a user control panel that runs on freePBX. Interestingly, the version it runs on is 16.0.40.7, which after looking it up online there are CVEs for versions 15, 16, and 17. The CVE that caught my eye was [CVE-2025-57819](https://nvd.nist.gov/vuln/detail/CVE-2025-57819). What this does is that any user-supplied data in api endpoints is unsanitized, which leads to arbitrary database manipulation and RCE (remote code exectution).
 		+ There is an already a python script that takes advantage of this vulnerability.
 	+ After learning of this CVE, I used FFUF to find additional api endpoints except for config.php. After letting the tool run for a moment, I found that there was an endpoint named ajax.php. I plugged it in the searchbar and got an error: "ajaxRequest declined". 
-	+ Using FFUF once again, I fuzzed for parameter values to see if there is any different response. 
+	+ Using FFUF once again, I fuzzed for parameter values to see if there is any different response. Lo and behold, parameter values command and module throw different errors. 
