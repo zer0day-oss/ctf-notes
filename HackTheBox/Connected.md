@@ -9,4 +9,4 @@
 + After using the python script for CVE-2025-57819, I used it to get a reverse shell started. 
 	+ I used [Penelope](https://github.com/brightio/penelope#sample-typical-usage) to listen for the reverse shell and ran ```cat /etc/passwd```
 + Before starting any privesc techniques, I grabbed the flag from Asterisk's home directory. 
-+ From there, I enumerate 
++ From there, I enumerate the user and the linux machine. 
