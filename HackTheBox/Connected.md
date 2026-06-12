@@ -10,3 +10,5 @@
 	+ I used [Penelope](https://github.com/brightio/penelope#sample-typical-usage) to listen for the reverse shell and ran ```cat /etc/passwd```
 + Before starting any privesc techniques, I grabbed the flag from Asterisk's home directory. 
 + From there, I enumerate the user and the linux machine. 
+	+ Interestingly, I found an SUID bit on the [incrontab](https://linux.die.net/man/5/incrontab) command. 
+		+ Incrontab is similar to cron in that it creates jobs where it'll execute a command or user-made shell. However, it does this when there is a change to the path of a file instead of a timer. In the case of this machine, there is a file with all 
