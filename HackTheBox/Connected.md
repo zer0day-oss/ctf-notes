@@ -9,6 +9,7 @@
 + After using the python script for CVE-2025-57819, I used it to get a reverse shell started. 
 	+ I used [Penelope](https://github.com/brightio/penelope#sample-typical-usage) to listen for the reverse shell and ran ```cat /etc/passwd```
 + Before starting any privesc techniques, I grabbed the flag from Asterisk's home directory. 
-+ From there, I enumerate the user and the linux machine. 
-	+ Interestingly, I found an SUID bit on the [incrontab](https://linux.die.net/man/5/incrontab) command. 
-		+ Incrontab is similar to cron in that it creates jobs where it'll execute a command or user-made shell. However, it does this when there is a change to the path of a file instead of a timer. In the case of this machine, the incrontab file that contains all the jobs is in the /etc/incron.d directorya. 
++ From there, I enumerate the user and the linux machine to find a way to get root over the system. 
+	+ Interestingly, I found an SUID bit on the [incrontab](https://linux.die.net/man/5/incrontab) command using peass_ng. 
+		+ Incrontab is similar to cron in that it creates jobs where it'll execute a command or user-made shell, which is done on file events instead of a timer. Additionally, there are two categories for tables: user and system tables. System tables is the one I'm most interested in and, by default, they can be found in the /etc/incron.d directory
+		+ In the directory
