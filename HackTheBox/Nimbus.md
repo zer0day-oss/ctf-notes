@@ -3,7 +3,8 @@
 | :--------: | :--------: |
 | Difficulty |    Hard    |
 |    Site    | HackTheBox |
-|   Ports    | 22 and 80  |
+|    Type    |   Linux    |
+
 
 # Enumeration
 
