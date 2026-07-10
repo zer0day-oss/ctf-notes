@@ -8,8 +8,26 @@
 
 [[Screenshot 2026-07-09 at 18-06-00 Chainline — Log the ride. Own the climb.png]]
 
-Opening the challenge, the website I was directed to looks like an ordinary online tracker with blog-like qualities. On investigation, however, I found the 'import ride' button located on the top-right corner of the site directs you to a file upload page, which an account is needed. I created a simple account and immediately went to the page responsible for uploading files. The files that can only be uploaded are gpx files, which are 
+Opening the challenge, the website I was directed to looks like an ordinary online tracker with blog-like qualities. On investigation, however, I found the 'import ride' button located on the top-right corner of the site directs you to a file upload page, which an account is needed. I created a simple account and immediately went to the page responsible for uploading files. The files that can only be uploaded are gpx files, which are files that contain GPS data in XML format. I searched for any vulnerabilities regarding gpx files and came up with varied results and requisites that don't fit the server shown. I then redirected my attention to the XML format part and searched for that. I came up with results pointing to XXE (XML External Entity) vulnerabilities. 
 
-What worked, though, was downloading the
+# Vulnerability
+
+Before making a gpx file with an XXE payload, I needed to test if the site is vulnerable to this type of attack, which means making a regular gpx file just to see what the response looks like. Luckily, the site already provides a sample gpx file to mess around with. I downloaded the file and uploaded it to see what it looks like. 
+
+[[Screenshot 2026-07-09 at 18-40-09 Saturday Club Loop — Chainline.png]]
+
+Now to see if it is vulnerable to a XXE injection. By adding `<!DOCTYPE replace [<!ENTITY foo "test"> ]>` to the line under the XML version and then replacing the text in the `<desc>&foo;</desc>` with this one. After uploading my edit, I got this:
+
+[[Screenshot 2026-07-09 at 18-55-58 Saturday Club Loop — Chainline.png]]
+
+This confirmed that the site is vulnerable to XXE and I can then exploit the site to give me the flag. 
+
+# Exploitation
+
+After some trial and error, (the errors in which case was trying to find the flag, which if not found or the file is not present, there will be an error message instead of the file being uploaded - HANDY!), I found the flag in the '/' directory instead of the rider home directory found in '/etc/passwd'. The injection sample I used to get it was `<!DOCTYPE data [<!ENTITY foo SYSTEM "file:///foo/bar"> ]>` (replace 'foo/bar' with the file in question) and I got the flag! Good luck hackers! 
+
+
+
+
 
 
