@@ -7,3 +7,7 @@
 # Enumeration
 
 <img src="https://github.com/zer0day-oss/ctf-notes/blob/main/Webverselabs/images/granted_main-page.png">
+Upon opening the web page, the site introduces me to graphs of the gross volume, new balance, customers, and money paid. This tells me that this site must be an eCommerce analytics web site. Other than some payments that are done through credit cards and other personal info, there isn't anything that really jumps out at me. 
+
+## Viewing the page source
+<img src="
