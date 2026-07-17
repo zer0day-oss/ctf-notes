@@ -8,6 +8,7 @@
 
 <img src="https://github.com/zer0day-oss/ctf-notes/blob/main/Webverselabs/images/granted_main-page.png">
 Upon opening the web page, the site introduces me to graphs of the gross volume, new balance, customers, and money paid. This tells me that this site must be an eCommerce analytics web site. Looking at the description of the daily challenge tells me that there is an assistant I should be looking for. Before I go looking for the assistant, I take a peak at the users of this site so that I get an idea of who has the most privilege. After some looking around, I found a user named Jordan Rivera with an email owner@granted.io. I keep this in mind because I will use this email later. 
+
 ## Viewing the page source
 
 <img src="https://github.com/zer0day-oss/ctf-notes/blob/bcecf9dab764b6b7922465325f30418b9da49eca/Webverselabs/images/granted_page-source.png"> 
