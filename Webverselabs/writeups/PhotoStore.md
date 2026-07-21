@@ -10,6 +10,7 @@
 Before scanning for ports and poking around a site, I like to read the description of the lab. This gives me an idea where I should start looking for and plan out my pentest methodology. In this case, the description is leading me to believe that there is a vulnerability that can be exploited with how the ImageDescription field is parsed with this site's homegrown MetaDSL. I first looked up what MetaDSL is, and I got this description: "metadsl inserts a layer between calling a function and computing its result, so that we can build up a bunch of calls, transform them, and then execute them all at once." In short, there is a layer in which functions are responded with the result of the execution, which means that in the case of this lab, the ImageDescription field is what is being parsed and executed. An example of this field is downloadable from the lab's website.
 
 <img src="https://github.com/zer0day-oss/ctf-notes/blob/main/Webverselabs/images/photostore-sample_exifdata.png?raw=true">
+
 ## ImageDescription
 
 The ImageDescription tag revealed by exiftool, shows that the value of that tag uses the OS module calling on os.system() to echo "Sample image - MetaDSL v2.1 annotations enabled". What this tells me is that it's vulnerable to [CWE-20: Improper Input Validation](https://cwe.mitre.org/data/definitions/20.html). This indicates that it executes any python code in that field and spits out the output data through the archive receipt.
