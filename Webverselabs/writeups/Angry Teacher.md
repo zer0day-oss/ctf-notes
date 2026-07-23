@@ -20,5 +20,7 @@ With the API key, I now have access to the API, which would allow me to change t
 
 To change the grades, I would need to know how the the resource is pulled. Luckily, viewing the network tab again, and looking at the response of the url mentioned above, shows that the data is in json format. Namely, `{"id":<int>,"student_id":<int>,"subject":<str>,"grade":<int>,"comment":<str>}`, and because it's in json format, I need to explicitly mention in the Content-Type header that it is 'application/json' so that it reads it right. With all this known, it's time to change the grades. Initially, I used the PATCH http method, but that produced an error. I later found out that the PUT method is the way to go.  
 
-<img src="
+<img src="https://github.com/zer0day-oss/ctf-notes/blob/8a0d9fcf36e42efd434444662c653277e924e7e2/Webverselabs/images/angryteacher_curl.png" alt="image of the curl command"> 
+
+After doing this for all four subjects, I got a flag on the fourth subject through the main page used to view the grades. This type of attack is a classic IDOR (Insecure Direct Object Reference) vulnerability.  
 
