@@ -10,3 +10,6 @@ Before I scan for open ports, I first read the description for the lab so that I
 
 ## Finding the API key
 
+Now that I know what the objective of this lab is, I will need to find the API key. I started with viewing the source page of the website since there are times that web developers will hide clues, comments, credentials, and/or scripts. I didn't need to look any further than that because the API key was hidden in the html comments. 
+
+<img src=
