@@ -1,0 +1,22 @@
+
+|    Name     |                                                                                                                                                                                      JurryHurry                                                                                                                                                                                       |
+| :---------: | :-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: |
+|    Site     |                                                                                                                                                                                     Webverselabs                                                                                                                                                                                      |
+|    Type     |                                                                                                                                                                                       Easy Lab                                                                                                                                                                                        |
+| Description | JurryHurry is a long-established firm that handles everything from real estate closings to commercial litigation. Enquiries come in through the contact form on the public site, and a clerk works the queue from a staff portal each morning. The managing partner wants a quiet look at that portal before a compliance review. Start at the front door and see how far in you get. |
+
+# Enumeration
+
+From the description alone, the main focus should be on the staff portal, which has a queue of contact forms from their public site. Looking at it broadly, that would mean that the contact form is the first step on this chain of vulnerabilities. However, that is just a guess. I scan for ports first, and find that port 80 is open with a domain of jurryhurry.local. This domain name is added into my /etc/hosts file so that I can visit the site. 
+
+## Jurryhurry.local 
+
+At first glance, the website is about a law-firm from Connecticut that started out as a small business. The site features an about, teams, employment, services, and most importantly of all a contact form. the contact form looks to be about normal looking, but if this is where it starts, then I need to get a better idea on how it works. For starters, I sent a normal contact form to observe how the site handles it, and the response looks normal. Now, this is where I start testing for vulnerabilities. One of them being a stored XSS, a stored XSS (Stored Cross Site Scripting) is when the server "stores" malicious code that gets executed everytime the page is accessed by a third party. The reason for this line of thinking is because how it mentioned in the description of this lab that there is a someone that has a queue of these contact forms that they look over. This means that they have to access these forms, which will then execute whatever code is executed. The way to prove this works is to send code of something that will ping back to my machine. For that, I went to [PayloadsAllTheThings](https://swisskyrepo.github.io/PayloadsAllTheThings/XSS%20Injection/#methodology) and went to the XSS section to find an exploit for my purposes. I wrote a contact form as normal except for the last part of the form, where I instead wrote a data grabber that would grab someone's cookie. 
+
+## Fuzzing directories
+
+The description mentioned a portal, which I could only assume is a directory. For that reason, I used ffuf to fuzz for additional directories that I have not enumerated for. After a minute, I got a directory I have not stumbled on found while enumerating the website. 
+
+# Stored XSS success
+
+While I was busy looking for any directories, my php script caught a cookie from the stored XSS attack, which I was able to use to get into the admin directory and grab the flag. 
